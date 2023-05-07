@@ -1,5 +1,5 @@
 window.addEventListener('DOMContentLoaded', function () {
-    gsap.registerPlugin(ScrollTrigger, AttrPlugin);
+    gsap.registerPlugin(ScrollTrigger);
     gsap.defaults({
         ease: "none",
         duration: 2
@@ -43,12 +43,6 @@ window.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // gsap.to('#orderButton', {
-    //     rotation: 360,
-    //     duration: 15,
-    //     repeat: -1,
-    //     repeatDelay: 0
-    // });
     const orderBtn = gsap.timeline({
         scrollTrigger: {
             trigger: '#pluses',
