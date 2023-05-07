@@ -141,7 +141,7 @@ body {
     width: 100vw;
     padding: 16px 0px 17px;
     z-index: 10;
-    background-color: transparent;
+    background-color: rgba(255, 255, 255, 0);
     transition: all 0.3s ease;
 }
 
@@ -297,11 +297,33 @@ body {
     bottom: 20px;
     padding-top: 3px;
     cursor: pointer;
+    z-index: 15;
 }
 
+.order-button:hover .order-button_border{
+    opacity: 1;
+}
+
+.order-button_border{
+    position: absolute;
+    opacity: 0;
+    content: '';
+    display: block;
+    width: 225px;
+    height: 225px;
+    background: #5a30f077;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 100%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    z-index: -1;
+    transition: all 0.3s ease;
+}
 .pluses {
     padding-top: 73px;
-    margin-bottom: 120px;
+    margin-bottom: 150px;
 }
 
 .pluses_wrapper {
@@ -317,6 +339,7 @@ body {
     background: #F3F6FB;
     border-radius: 8px;
     transition: all 1s ease;
+    position: relative;
 }
 .pluses_item:hover{
     background: #5A30F0;

@@ -1,9 +1,11 @@
 window.addEventListener('DOMContentLoaded', function () {
-    gsap.registerPlugin(ScrollTrigger);
+    gsap.registerPlugin(ScrollTrigger, AttrPlugin);
     gsap.defaults({
         ease: "none",
         duration: 2
     });
+
+
 
     const nav = gsap.timeline({
         scrollTrigger: {
@@ -19,13 +21,67 @@ window.addEventListener('DOMContentLoaded', function () {
         backgroundColor: '#fff'
     });
 
-    // const orderBtn = gsap.timeline({
-    //     scrollTrigger: {
-    //         trigger: '#header',
-    //         start: '0 100%',
-    //         toggleAction: 'restart pause reverse pause',
-    //         scrub: true,
-    //     }
+    const plusesItems = document.querySelectorAll('.pluses_item');
+
+    const plusesTimeline = gsap.timeline({
+        scrollTrigger: {
+            trigger: '#header',
+            start: '50px top',
+            end: '50% top',
+            toggleAction: 'restart pause reverse pause',
+            scrub: true,
+        },
+    });
+
+    plusesItems.forEach((item, index) => {
+        plusesTimeline.from(item, {
+            duration: 0.2,
+            y: 100,
+            delay: index * 0.005
+        }).to(item, {
+            y: 0,
+        });
+    });
+
+    // gsap.to('#orderButton', {
+    //     rotation: 360,
+    //     duration: 15,
+    //     repeat: -1,
+    //     repeatDelay: 0
     // });
-    // orderBtn.from('#orderButton', { scale: 1, rotation: 0, y: 0 }).to('#orderButton', { scale: 0.5, rotation: 160, y: 140 });
+    const orderBtn = gsap.timeline({
+        scrollTrigger: {
+            trigger: '#pluses',
+            start: '0 100%',
+            end: 'bottom bottom',
+            toggleAction: 'restart pause reverse pause',
+            scrub: true,
+        }
+    });
+
+    orderBtn.from('#orderButton', {
+        duration: 1,
+        rotation: -15,
+        y: 0
+    }).to('#orderButton', {
+        duration: 1,
+        scale: 0.8,
+        rotation: 60,
+        y: 70,
+    });
+
+    const button = document.querySelector('#orderButton');
+    button.addEventListener('mouseenter', function () {
+        gsap.to(button, {
+            scale: 1,
+            ease: 'back.out(1.7)',
+        });
+    });
+
+    button.addEventListener('mouseleave', function () {
+        gsap.to(button, {
+            scale: 0.8,
+            ease: 'back.out(1.7)',
+        });
+    });
 });
